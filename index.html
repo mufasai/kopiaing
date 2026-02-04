@@ -1,376 +1,360 @@
 <!DOCTYPE html>
-<html lang="id">
+<html lang='en'>
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>KOPI AING 555 | Premium Coffee</title>
-
-    <!-- Fonts -->
-    <link
-        href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Poppins:wght@300;400;500;600&display=swap"
-        rel="stylesheet">
-
-    <!-- Bootstrap 5 -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
-
-    <!-- Icons -->
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
-
-    <style>
-        :root {
-            --primary: #D4AF37;
-            /* Gold */
-            --primary-hover: #F2C94C;
-            --dark-bg: #121212;
-            --card-bg: #1E1E1E;
-            --text-light: #F8F9FA;
-            --text-muted: #F8F9FA;
-        }
-
-        body {
-            background-color: var(--dark-bg);
-            color: var(--text-light);
-            font-family: 'Poppins', sans-serif;
-            overflow-x: hidden;
-        }
-
-        h1,
-        h2,
-        h3,
-        h4,
-        h5,
-        h6 {
-            font-family: 'Playfair Display', serif;
-            color: var(--primary);
-        }
-
-        /* Navbar */
-        .navbar {
-            background: rgba(18, 18, 18, 0.95);
-            backdrop-filter: blur(10px);
-            border-bottom: 1px solid rgba(212, 175, 55, 0.2);
-        }
-
-        .navbar-brand {
-            font-weight: 700;
-            color: var(--primary) !important;
-            font-size: 1.5rem;
-        }
-
-        /* Hero Section */
-        .hero {
-            position: relative;
-            height: 100vh;
-            min-height: 600px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.8)),
-                url('https://images.unsplash.com/photo-1509042239860-f550ce710b93');
-            background-size: cover;
-            background-position: center;
-            background-attachment: fixed;
-            text-align: center;
-        }
-
-        .hero-content h1 {
-            font-size: 4rem;
-            margin-bottom: 1rem;
-            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
-        }
-
-        .hero-content p {
-            font-size: 1.2rem;
-            color: #ddd;
-            margin-bottom: 2rem;
-        }
-
-        /* Buttons */
-        .btn-gold {
-            background-color: var(--primary);
-            color: #000;
-            font-weight: 600;
-            border-radius: 50px;
-            padding: 10px 30px;
-            transition: all 0.3s ease;
-            border: none;
-        }
-
-        .btn-gold:hover {
-            background-color: var(--primary-hover);
-            transform: translateY(-2px);
-            box-shadow: 0 5px 15px rgba(212, 175, 55, 0.3);
-            color: #000;
-        }
-
-        .btn-outline-gold {
-            border: 2px solid var(--primary);
-            color: var(--primary);
-            border-radius: 50px;
-            padding: 8px 25px;
-            font-weight: 600;
-            transition: all 0.3s;
-        }
-
-        .btn-outline-gold:hover {
-            background-color: var(--primary);
-            color: #000;
-        }
-
-        /* Slider */
-        .gallery-section {
-            padding: 4rem 0;
-            background: #181818;
-        }
-
-        .scroll-container {
-            display: flex;
-            gap: 20px;
-            overflow-x: auto;
-            padding: 20px;
-            scroll-behavior: smooth;
-        }
-
-        .scroll-container::-webkit-scrollbar {
-            height: 8px;
-        }
-
-        .scroll-container::-webkit-scrollbar-track {
-            background: #121212;
-        }
-
-        .scroll-container::-webkit-scrollbar-thumb {
-            background: #333;
-            border-radius: 4px;
-        }
-
-        .gallery-img {
-            height: 250px;
-            border-radius: 12px;
-            transition: transform 0.3s;
-            cursor: pointer;
-            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
-        }
-
-        .gallery-img:hover {
-            transform: scale(1.05);
-        }
-
-        /* Product Cards */
-        .product-card {
-            background: var(--card-bg);
-            border: 1px solid rgba(255, 255, 255, 0.05);
-            border-radius: 16px;
-            padding: 20px;
-            height: 100%;
-            transition: all 0.3s ease;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .product-card::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 3px;
-            background: var(--primary);
-            transform: scaleX(0);
-            transition: transform 0.3s;
-        }
-
-        .product-card:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
-            border-color: rgba(212, 175, 55, 0.3);
-        }
-
-        .product-card:hover::before {
-            transform: scaleX(1);
-        }
-
-        .price-tag {
-            font-size: 1.25rem;
-            color: #ffffff;
-            font-weight: 700;
-        }
-
-        /* Store Status */
-        .store-status {
-            position: fixed;
-            bottom: 20px;
-            left: 20px;
-            z-index: 1000;
-            padding: 10px 20px;
-            border-radius: 50px;
-            font-weight: 600;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.5);
-            backdrop-filter: blur(5px);
-        }
-
-        .status-open {
-            background: rgba(25, 135, 84, 0.9);
-            color: white;
-        }
-
-        .status-closed {
-            background: rgba(220, 53, 69, 0.9);
-            color: white;
-        }
-
-        /* Cart Floating Button & Modal */
-        .cart-float {
-            position: fixed;
-            bottom: 20px;
-            right: 20px;
-            z-index: 1000;
-            width: 60px;
-            height: 60px;
-            border-radius: 50%;
-            background: var(--primary);
-            color: black;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 24px;
-            box-shadow: 0 5px 20px rgba(212, 175, 55, 0.4);
-            cursor: pointer;
-            transition: transform 0.3s;
-        }
-
-        .cart-float:hover {
-            transform: scale(1.1);
-        }
-
-        .cart-badge {
-            position: absolute;
-            top: -5px;
-            right: -5px;
-            background: red;
-            color: white;
-            font-size: 12px;
-            padding: 4px 8px;
-            border-radius: 20px;
-            font-weight: bold;
-        }
-
-        /* Checkout Form */
-        .form-control,
-        .form-select {
-            background-color: #2A2A2A;
-            border: 1px solid #444;
-            color: #fff;
-        }
-
-        .form-control:focus,
-        .form-select:focus {
-            background-color: #2A2A2A;
-            color: #fff;
-            border-color: var(--primary);
-            box-shadow: 0 0 0 0.25rem rgba(212, 175, 55, 0.25);
-        }
-
-        /* Footer */
-        footer {
-            background: #0E0E0E;
-            padding: 50px 0 20px;
-            border-top: 1px solid #333;
-        }
-
-        .bank-card {
-            background: #181818;
-            padding: 15px;
-            border-radius: 10px;
-            border: 1px solid #333;
-            margin-bottom: 10px;
-        }
-
-        .copy-btn {
-            background: transparent;
-            border: 1px solid var(--primary);
-            color: var(--primary);
-            font-size: 0.8rem;
-        }
-
-        .copy-btn:hover {
-            background: var(--primary);
-            color: #000;
-        }
-    </style>
+    <meta charset='UTF-8'>
+    <meta name='viewport' content='width=device-width, initial-scale=1.0'>
+    <title>KOPI SPECIAL AING 555</title>
+    <link rel='stylesheet' href='https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css'>
 </head>
 
 <body>
+    <div class='container'>
+        <div class='content mt-4'>
+            <!DOCTYPE html>
+            <html lang="id">
 
-    <!-- Navbar -->
-    <nav class="navbar navbar-expand-lg navbar-dark fixed-top">
-        <div class="container">
-            <a class="navbar-brand" href="#">KOPI AING 555</a>
-        </div>
-    </nav>
+            <head>
+                <meta charset="UTF-8">
+                <meta name="viewport" content="width=device-width, initial-scale=1.0">
+                <title>Kopi Aing 555</title>
+                <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+                <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap"
+                    rel="stylesheet">
+                <style>
+                    :root {
+                        --gold: #d4af37;
+                        --dark: #0e0e0e;
+                        --card: #1a1a1a;
+                        --wa-green: #25d366;
+                    }
 
-    <!-- Hero -->
-    <section class="hero">
-        <div class="hero-content container">
-            <h1 class="display-3 fw-bold animate__animated animate__fadeInDown">Rasakan Kenikmatan<br>Kopi Nusantara
-            </h1>
-            <p class="lead animate__animated animate__fadeInUp">Premium Fresh Roast • 100% Asli Indonesia</p>
-            <a href="#products" class="btn btn-gold btn-lg mt-3">Pesan Sekarang</a>
-        </div>
-    </section>
+                    body {
+                        background: var(--dark);
+                        color: #fff;
+                        font-family: 'Poppins', sans-serif;
+                    }
 
-    <!-- Gallery Slider -->
-    <section class="gallery-section">
-        <div class="container">
-            <h3 class="text-center mb-4">Galeri Kami</h3>
-            <div class="position-relative">
-                <button class="btn btn-dark position-absolute start-0 top-50 translate-middle-y z-3 rounded-circle"
-                    onclick="scrollGallery(-1)"><i class="bi bi-chevron-left"></i></button>
-                <div class="scroll-container" id="galleryScroll">
-                    <img src="https://i.ibb.co.com/2749mY1K/Whats-App-Image-2025-12-26-at-19-58-01.jpg"
-                        class="gallery-img">
-                    <img src="https://i.ibb.co.com/nGKd6vT/Whats-App-Image-2025-12-26-at-19-58-02.jpg"
-                        class="gallery-img">
-                    <img src="https://i.ibb.co.com/JRHBmC0r/Whats-App-Image-2025-12-26-at-19-58-03.jpg"
-                        class="gallery-img">
-                    <img src="https://i.ibb.co.com/TxbYcWVL/Whats-App-Image-2025-12-26-at-19-58-04.jpg"
-                        class="gallery-img">
-                    <img src="https://i.ibb.co.com/BKzV92zW/Whats-App-Image-2025-12-26-at-19-58-05-1.jpg"
-                        class="gallery-img">
+                    h1,
+                    h2,
+                    h4 {
+                        color: var(--gold);
+                    }
+
+                    .hero {
+                        background: linear-gradient(rgba(0, 0, 0, .7), rgba(0, 0, 0, .9)), url('https://images.unsplash.com/photo-1509042239860-f550ce710b93');
+                        background-size: cover;
+                        background-position: center;
+                        padding: 110px 20px;
+                        text-align: center;
+                    }
+
+                    /* ===== SLIDER ===== */
+                    .mini-slider {
+                        position: relative;
+                        max-width: 1100px;
+                        margin: 40px auto;
+                        overflow: hidden;
+                        border-radius: 18px;
+                    }
+
+                    .slider-track {
+                        display: flex;
+                        gap: 15px;
+                        padding: 15px;
+                        overflow-x: auto;
+                        scroll-behavior: smooth;
+                    }
+
+                    .slider-track::-webkit-scrollbar {
+                        display: none;
+                    }
+
+                    .slider-track img {
+                        height: 170px;
+                        border-radius: 14px;
+                        transition: .3s;
+                    }
+
+                    .slider-track img:hover {
+                        transform: scale(1.05);
+                    }
+
+                    .nav {
+                        position: absolute;
+                        top: 50%;
+                        transform: translateY(-50%);
+                        background: rgba(0, 0, 0, .6);
+                        color: var(--gold);
+                        border: none;
+                        font-size: 26px;
+                        width: 42px;
+                        height: 42px;
+                        border-radius: 50%;
+                        z-index: 10;
+                    }
+
+                    .prev {
+                        left: 10px;
+                    }
+
+                    .next {
+                        right: 10px;
+                    }
+
+                    /* ===== PRODUCT ===== */
+                    .product-card {
+                        background: var(--card);
+                        border-radius: 14px;
+                        padding: 15px;
+                        text-align: center;
+                        transition: .3s;
+                        height: 100%;
+                        border: 1px solid #333;
+                    }
+
+                    .product-card:hover {
+                        transform: translateY(-5px);
+                        box-shadow: 0 0 20px rgba(212, 175, 55, .25);
+                        border-color: var(--gold);
+                    }
+
+                    .btn-gold {
+                        background: var(--gold);
+                        color: #000;
+                        font-weight: 600;
+                        border: none;
+                    }
+
+                    .btn-gold:hover {
+                        background: #ffda5a;
+                    }
+
+                    footer {
+                        border-top: 1px solid var(--gold);
+                        color: var(--gold);
+                        font-size: 13px;
+                    }
+
+                    .gold-card {
+                        background: linear-gradient(145deg, #1a1a1a, #0e0e0e);
+                        border: 1px solid #d4af37;
+                        border-radius: 18px;
+                        box-shadow: 0 0 25px rgba(212, 175, 55, .25);
+                    }
+
+                    .gold-title {
+                        color: #d4af37;
+                        font-weight: 700;
+                        letter-spacing: 1px;
+                    }
+
+                    .bank-box {
+                        border: 1px dashed #d4af37;
+                        border-radius: 12px;
+                        padding: 12px;
+                        margin-bottom: 12px;
+                    }
+
+                    .copy-btn {
+                        background: #d4af37;
+                        border: none;
+                        color: #000;
+                        font-weight: 600;
+                    }
+
+                    /* ===== PURCHASE POPUP ===== */
+                    #purchase-notification {
+                        position: fixed;
+                        bottom: 20px;
+                        left: -400px;
+                        background: #fff;
+                        color: #333;
+                        padding: 12px 18px;
+                        border-radius: 10px;
+                        box-shadow: 0 5px 20px rgba(0, 0, 0, 0.5);
+                        display: flex;
+                        align-items: center;
+                        gap: 12px;
+                        z-index: 9999;
+                        transition: all 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+                        max-width: 320px;
+                        border-left: 5px solid var(--gold);
+                    }
+
+                    #purchase-notification.show {
+                        left: 20px;
+                    }
+
+                    .pop-icon {
+                        font-size: 24px;
+                    }
+
+                    .pop-text {
+                        font-size: 12px;
+                        line-height: 1.4;
+                    }
+
+                    .pop-name {
+                        font-weight: bold;
+                        color: #d4af37;
+                    }
+
+                    .pop-time {
+                        font-size: 10px;
+                        color: #888;
+                        display: block;
+                        margin-top: 2px;
+                    }
+
+                    /* ===== FLOATING WA (NEW) ===== */
+                    .floating-wa {
+                        position: fixed;
+                        bottom: 20px;
+                        right: 20px;
+                        z-index: 10000;
+                        display: flex;
+                        flex-direction: column;
+                        align-items: flex-end;
+                    }
+
+                    .wa-menu {
+                        display: none;
+                        flex-direction: column;
+                        gap: 10px;
+                        margin-bottom: 15px;
+                        transition: 0.3s;
+                    }
+
+                    .wa-menu.active {
+                        display: flex;
+                    }
+
+                    .wa-item {
+                        background: #25d366;
+                        color: white;
+                        padding: 10px 20px;
+                        border-radius: 30px;
+                        text-decoration: none;
+                        font-size: 14px;
+                        font-weight: 600;
+                        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+                        display: flex;
+                        align-items: center;
+                        gap: 10px;
+                        transition: 0.3s;
+                        white-space: nowrap;
+                    }
+
+                    .wa-item:hover {
+                        transform: scale(1.05);
+                        background: #128c7e;
+                        color: white;
+                    }
+
+                    .wa-item.reseller {
+                        background: var(--gold);
+                        color: #000;
+                    }
+
+                    .wa-main-btn {
+                        width: 60px;
+                        height: 60px;
+                        background: #25d366;
+                        border-radius: 50%;
+                        display: flex;
+                        justify-content: center;
+                        align-items: center;
+                        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.4);
+                        cursor: pointer;
+                        transition: 0.3s;
+                        border: none;
+                    }
+
+                    .wa-main-btn:hover {
+                        transform: rotate(15deg) scale(1.1);
+                    }
+
+                    .wa-main-btn svg {
+                        fill: white;
+                        width: 35px;
+                        height: 35px;
+                    }
+                </style>
+            </head>
+
+            <body>
+
+                <!-- NOTIFIKASI PEMBELIAN -->
+                <div id="purchase-notification">
+                    <div class="pop-icon">☕</div>
+                    <div class="pop-text">
+                        <span id="pop-content">Sedang memuat pesanan...</span>
+                        <span class="pop-time" id="pop-time">Baru saja</span>
+                    </div>
                 </div>
-                <button class="btn btn-dark position-absolute end-0 top-50 translate-middle-y z-3 rounded-circle"
-                    onclick="scrollGallery(1)"><i class="bi bi-chevron-right"></i></button>
-            </div>
-        </div>
-    </section>
 
-    <!-- Products -->
-    <section id="products" class="container py-5">
-        <div class="text-center mb-5">
-            <h2 class="section-title">Katalog Kopi</h2>
-            <p class="text-white">Kemasan 100gr • Kualitas Terbaik</p>
-        </div>
+                <!-- FLOATING WHATSAPP -->
+                <div class="floating-wa">
+                    <div class="wa-menu" id="waMenu">
+                        <a href="https://wa.me/6281283481295?text=Halo%20Admin%2C%20saya%20ingin%20Konsultasi%20mengenai%20produk%20kopi."
+                            target="_blank" class="wa-item">
+                            💬 Konsultasi
+                        </a>
+                        <a href="https://wa.me/6281283481295?text=Halo%20Admin%2C%20saya%20berminat%20untuk%20Daftar%20sebagai%20Reseller%20Kopi%20Aing%20555."
+                            target="_blank" class="wa-item reseller">
+                            🤝 Daftar Reseller
+                        </a>
+                    </div>
+                    <button class="wa-main-btn" onclick="toggleWaMenu()" aria-label="WhatsApp Menu">
+                        <svg viewBox="0 0 24 24">
+                            <path
+                                d="M12.031 6.172c-3.181 0-5.767 2.586-5.768 5.766-.001 1.298.38 2.27 1.019 3.287l-.582 2.128 2.182-.573c.978.58 1.911.928 3.145.929 3.178 0 5.767-2.587 5.768-5.766 0-3.18-2.587-5.771-5.764-5.771zm3.392 8.244c-.144.405-.837.774-1.17.824-.299.045-.677.063-1.092-.069-.252-.08-.575-.187-.988-.365-1.739-.751-2.874-2.502-2.961-2.617-.087-.116-.708-.94-.708-1.793 0-.853.448-1.273.607-1.446.159-.173.346-.217.462-.217l.332.006c.106.005.249-.04.39.298.144.347.491 1.2.534 1.287.043.087.072.188.014.304-.058.116-.087.188-.173.289l-.26.304c-.087.101-.177.211-.077.383.1.173.444.731.953 1.185.656.584 1.209.765 1.382.852.173.087.275.072.376-.043.101-.116.433-.506.548-.68.116-.173.231-.144.39-.087s1.011.477 1.184.564c.173.087.289.129.332.202.043.073.043.419-.101.824z">
+                            </path>
+                        </svg>
+                    </button>
+                </div>
 
-        <div class="row g-4" id="productList">
-            <!-- Products will be injected here -->
-        </div>
-    </section>
+                <!-- HERO -->
+                <section class="hero">
+                    <h1 class="display-4">KOPI AING 555</h1>
+                    <p class="mt-3">Kopi Nusantara Premium • Fresh Roast</p>
+                    <a href="#produk" class="btn btn-gold btn-lg mt-3">☕ Lihat Produk</a>
+                </section>
 
-    <!-- Checkout Section -->
-    <section class="container py-5">
-        <div class="row justify-content-center">
-            <div class="col-md-8">
-                <div class="card bg-dark border-secondary p-4">
-                    <h3 class="text-center mb-4"><i class="bi bi-cart3"></i> Keranjang Belanja</h3>
+                <!-- SLIDER -->
+                <div class="mini-slider">
+                    <button class="nav prev" onclick="slide(-1)">‹</button>
+                    <div class="slider-track" id="slider">
+                        <img src="https://i.ibb.co.com/2749mY1K/Whats-App-Image-2025-12-26-at-19-58-01.jpg"
+                            alt="Coffee 1">
+                        <img src="https://i.ibb.co.com/nGKd6vT/Whats-App-Image-2025-12-26-at-19-58-02.jpg"
+                            alt="Coffee 2">
+                        <img src="https://i.ibb.co.com/JRHBmC0r/Whats-App-Image-2025-12-26-at-19-58-03.jpg"
+                            alt="Coffee 3">
+                        <img src="https://i.ibb.co.com/TxbYcWVL/Whats-App-Image-2025-12-26-at-19-58-04.jpg"
+                            alt="Coffee 4">
+                        <img src="https://i.ibb.co.com/BKzV92zW/Whats-App-Image-2025-12-26-at-19-58-05-1.jpg"
+                            alt="Coffee 5">
+                    </div>
+                    <button class="nav next" onclick="slide(1)">›</button>
+                </div>
 
-                    <div id="cartList" class="mb-4 text-center">
+                <!-- PRODUK -->
+                <section id="produk" class="container my-5">
+                    <h2 class="text-center mb-4">Produk Kopi Bubuk 100gr</h2>
+                    <div class="row g-4" id="productList"></div>
+
+                    <hr class="my-5">
+                    <div id="jamToko" class="alert text-center mb-3"></div>
+
+                    <h4>🛒 Keranjang</h4>
+                    <div id="cartList" class="mb-3">
                         <small class="text-muted">Keranjang masih kosong</small>
                     </div>
 
-                    <h5 class="mb-3">Informasi Pengiriman</h5>
                     <div class="mb-3">
-                        <label class="form-label text-muted">Jasa Pengiriman</label>
+                        <label class="form-label small">Pilih Kurir:</label>
                         <select id="shipping" class="form-select" onchange="renderCart()">
                             <option value="0">Ambil di tempat – Gratis</option>
                             <option value="15000">JNE – Rp15.000</option>
@@ -379,234 +363,220 @@
                         </select>
                     </div>
 
-                    <div class="mb-3">
-                        <input id="buyerName" class="form-control" placeholder="Nama Lengkap Anda">
-                    </div>
-                    <div class="mb-3">
-                        <textarea id="buyerAddress" class="form-control" rows="2"
-                            placeholder="Alamat Lengkap Pengiriman"></textarea>
-                    </div>
+                    <input id="buyerName" class="form-control mb-2" placeholder="Nama Pembeli">
+                    <textarea id="buyerAddress" class="form-control mb-3" placeholder="Alamat Lengkap"></textarea>
 
-                    <button class="btn btn-success w-100 btn-lg fw-bold" onclick="checkoutWA()">
-                        <i class="bi bi-whatsapp"></i> Checkout via WhatsApp
-                    </button>
+                    <button class="btn btn-success w-100 py-3 fw-bold" onclick="checkoutWA()">📲 Checkout
+                        WhatsApp</button>
+                </section>
+
+                <div class="text-center mb-5">
+                    <a href="https://yukngoding.biz.id/28sept/tarif-ongir-lokal-dan-nasional-695f6fab653d7.html"
+                        class="btn btn-outline-warning btn-sm">CEK ONGKIR LOKAL DAN NASIONAL</a>
                 </div>
-            </div>
+
+                <footer class="text-center py-5">
+                    <div class="container">
+                        <div class="gold-card p-4">
+                            <h3 class="gold-title mb-3">📞 ADMIN & 💳 PEMBAYARAN</h3>
+                            <p class="mb-2">
+                                WhatsApp Admin Aktif:<br>
+                                <a href="https://wa.me/6281283481295" target="_blank" class="text-warning fw-bold">📲
+                                    0812-8348-1295</a>
+                            </p>
+                            <p class="small-note mb-4">*Admin berbeda saat toko tutup</p>
+
+                            <div class="row g-3">
+                                <div class="col-md-4">
+                                    <div class="bank-box">
+                                        🏦 <b>BCA</b><br>
+                                        <span id="rekBCA">7391630481</span><br>
+                                        a.n Fira<br>
+                                        <button class="btn btn-sm copy-btn mt-2"
+                                            onclick="copyRek('7391630481')">Copy</button>
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="bank-box">
+                                        🏦 <b>BRI</b><br>
+                                        <span id="rekBRI">0000000</span><br>
+                                        a.n Kopi Aing 555<br>
+                                        <button class="btn btn-sm copy-btn mt-2"
+                                            onclick="copyRek('0000000')">Copy</button>
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="bank-box">
+                                        🏦 <b>MANDIRI</b><br>
+                                        <span id="rekMANDIRI">000000000</span><br>
+                                        a.n Kopi Aing 555<br>
+                                        <button class="btn btn-sm copy-btn mt-2"
+                                            onclick="copyRek('000000000')">Copy</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <p class="mt-4 opacity-50">© 2025 Kopi Aing 555</p>
+                    </div>
+                </footer>
+
+                <script>
+                    // ===== FLOATING WA MENU =====
+                    function toggleWaMenu() {
+                        const menu = document.getElementById('waMenu');
+                        menu.classList.toggle('active');
+                    }
+
+                    // Tutup menu WA jika klik di luar
+                    window.addEventListener('click', function (e) {
+                        const waContainer = document.querySelector('.floating-wa');
+                        if (!waContainer.contains(e.target)) {
+                            document.getElementById('waMenu').classList.remove('active');
+                        }
+                    });
+
+                    // ===== SLIDER =====
+                    function slide(d) {
+                        document.getElementById("slider").scrollBy({ left: 300 * d, behavior: 'smooth' });
+                    }
+
+                    // ===== JAM TOKO =====
+                    const JAM_BUKA = 8, JAM_TUTUP = 21;
+                    function renderJamToko() {
+                        const el = document.getElementById("jamToko");
+                        const h = new Date().getHours();
+                        if (h >= JAM_BUKA && h < JAM_TUTUP) {
+                            el.className = "alert alert-success";
+                            el.innerHTML = "🟢 <b>TOKO BUKA</b> | 08.00 – 21.00";
+                        } else {
+                            el.className = "alert alert-danger";
+                            el.innerHTML = "🔴 <b>TOKO TUTUP</b> | Buka 08.00";
+                        }
+                    }
+                    renderJamToko();
+                    setInterval(renderJamToko, 60000);
+
+                    // ===== PRODUK =====
+                    const products = [
+                        ['Flores Bajawa', 29000], ['Bali Kintamani', 29000], ['Aceh Gayo', 29000],
+                        ['Java Puntang', 29000], ['Malabar', 27000], ['Mandheling', 27000],
+                        ['Toraja', 27000], ['Papua Wamena', 29000], ['Kerinci', 28000],
+                        ['Java Ciwidey', 27000], ['Sidikalang Arabica', 28000], ['Aceh Gayo Wine', 41000],
+                        ['Bali Wine', 40000], ['Kerinci Arabica Natural', 35000], ['Aceh Gayo Natural', 36000],
+                        ['Papandayan', 31000], ['Semendo', 31000], ['Garut Nanas', 32000],
+                        ['Gn Halu Banana', 32000], ['Dampit Robusta', 22000], ['Sidikalang Robusta', 21000],
+                        ['Robusta Lampung', 23000], ['Robusta Gayo', 23000], ['Robusta Bali', 23000],
+                        ['Robusta Garut', 21000], ['Flores Bajawa Natural', 32000], ['Robusta Pagar Alam', 22000]
+                    ];
+
+                    const productList = document.getElementById('productList');
+                    products.forEach(p => {
+                        productList.innerHTML += `
+    <div class="col-md-4 col-6">
+        <div class="product-card">
+            <h6 class="small fw-bold">${p[0]}</h6>
+            <p class="text-warning mb-2">Rp ${p[1].toLocaleString()}</p>
+            <button class="btn btn-sm btn-gold w-100" onclick="addToCart('${p[0]}',${p[1]})">Tambah</button>
         </div>
-    </section>
+    </div>`;
+                    });
 
-    <!-- Other Link -->
-    <div class="container text-center py-4">
-        <a href="https://yukngoding.biz.id/28sept/tarif-ongir-lokal-dan-nasional-695f6fab653d7.html"
-            class="btn btn-outline-gold btn-sm">
-            CEK ONGKIR LOKAL DAN NASIONAL
-        </a>
-    </div>
+                    // ===== CART =====
+                    let cart = {};
+                    function addToCart(n, p) {
+                        cart[n] ? cart[n].qty++ : cart[n] = { price: p, qty: 1 };
+                        renderCart();
+                    }
 
-    <!-- Footer -->
-    <footer>
-        <div class="container">
-            <div class="row text-center text-md-start">
-                <div class="col-md-6 mb-4">
-                    <h4 class="mb-3">Kopi Aing 555</h4>
-                    <p class="text-white">Menyajikan kopi terbaik dari seluruh nusantara langsung ke cangkir Anda.
-                        Nikmati aroma dan rasa otentik Indonesia.</p>
-                </div>
-                <div class="col-md-6 mb-4">
-                    <h5 class="text-warning mb-3">Pembayaran</h5>
-                    <div class="row g-2">
-                        <div class="col-sm-4">
-                            <div class="bank-card text-center">
-                                <h6>BCA</h6>
-                                <small id="rekBCA">1234567890</small>
-                                <button class="btn btn-sm copy-btn d-block w-100 mt-2"
-                                    onclick="copyRek('rekBCA')">Copy</button>
-                            </div>
-                        </div>
-                        <div class="col-sm-4">
-                            <div class="bank-card text-center">
-                                <h6>BRI</h6>
-                                <small id="rekBRI">0987654321</small>
-                                <button class="btn btn-sm copy-btn d-block w-100 mt-2"
-                                    onclick="copyRek('rekBRI')">Copy</button>
-                            </div>
-                        </div>
-                        <div class="col-sm-4">
-                            <div class="bank-card text-center">
-                                <h6>MANDIRI</h6>
-                                <small id="rekMANDIRI">1122334455</small>
-                                <button class="btn btn-sm copy-btn d-block w-100 mt-2"
-                                    onclick="copyRek('rekMANDIRI')">Copy</button>
-                            </div>
-                        </div>
-                    </div>
-                    <p class="text-center text-muted small mt-2">a.n Kopi Aing 555</p>
-                </div>
-            </div>
-            <div class="text-center mt-4 pt-3 border-top border-secondary">
-                <small class="text-muted">© 2025 Kopi Aing 555. All Rights Reserved.</small>
-            </div>
+                    function renderCart() {
+                        const cartList = document.getElementById('cartList');
+                        if (!Object.keys(cart).length) {
+                            cartList.innerHTML = "<small class='text-muted'>Keranjang masih kosong</small>";
+                            return;
+                        }
+                        let total = 0, html = "<div class='table-responsive'><table class='table table-dark table-sm table-borderless'>";
+                        html += "<thead><tr><th>Produk</th><th>Qty</th><th>Sub</th><th></th></tr></thead><tbody>";
+                        for (let i in cart) {
+                            let s = cart[i].qty * cart[i].price;
+                            total += s;
+                            html += `<tr>
+            <td class="small">${i}</td>
+            <td>${cart[i].qty}</td>
+            <td class="small">Rp ${s.toLocaleString()}</td>
+            <td><button class="btn btn-sm text-danger p-0" onclick="delete cart['${i}'];renderCart()">✕</button></td>
+        </tr>`;
+                        }
+                        let ongkir = parseInt(document.getElementById('shipping').value);
+                        total += ongkir;
+                        html += `</tbody><tfoot><tr class="border-top"><th colspan="2">TOTAL</th><th colspan="2" class="text-warning">Rp ${total.toLocaleString()}</th></tr></tfoot></table></div>`;
+                        cartList.innerHTML = html;
+                    }
+
+                    // ===== CHECKOUT WA =====
+                    function checkoutWA() {
+                        if (!Object.keys(cart).length) return alert("Keranjang kosong");
+                        let msg = "☕ *KOPI AING 555*%0A━━━━━━━━━━━━━━%0A";
+                        for (let i in cart) {
+                            msg += `• ${i} (${cart[i].qty})%0A`;
+                        }
+                        msg += `━━━━━━━━━━━━━━%0A👤 ${document.getElementById('buyerName').value || "-"}%0A📍 ${document.getElementById('buyerAddress').value || "-"}`;
+                        window.open("https://wa.me/6281283481295?text=" + msg, "_blank");
+                    }
+
+                    function copyRek(id) {
+                        const dummy = document.createElement("textarea");
+                        document.body.appendChild(dummy);
+                        dummy.value = id;
+                        dummy.select();
+                        document.execCommand("copy");
+                        document.body.removeChild(dummy);
+                        alert("Nomor Rekening Berhasil Disalin!");
+                    }
+
+                    // ===== POPUP NOTIFICATION LOGIC =====
+                    const fakeNames = ["Budi", "Siti", "Andi", "Rina", "Agus", "Dewi", "Eko", "Maya", "Faisal", "Lestari", "Hendra", "Yanti"];
+                    const fakeCities = ["Jakarta", "Bandung", "Surabaya", "Medan", "Makassar", "Palembang", "Semarang", "Yogyakarta", "Denpasar", "Malang"];
+                    const fakeTimes = ["1 menit yang lalu", "3 menit yang lalu", "5 menit yang lalu", "10 menit yang lalu", "Baru saja"];
+
+                    function showPurchasePop() {
+                        const pop = document.getElementById('purchase-notification');
+                        const content = document.getElementById('pop-content');
+                        const time = document.getElementById('pop-time');
+
+                        const name = fakeNames[Math.floor(Math.random() * fakeNames.length)];
+                        const city = fakeCities[Math.floor(Math.random() * fakeCities.length)];
+                        const product = products[Math.floor(Math.random() * products.length)][0];
+                        const when = fakeTimes[Math.floor(Math.random() * fakeTimes.length)];
+
+                        content.innerHTML = `<span class="pop-name">${name}</span> dari <span class="fw-bold">${city}</span><br>Baru saja membeli <b>${product}</b>`;
+                        time.innerText = when;
+
+                        pop.classList.add('show');
+
+                        setTimeout(() => {
+                            pop.classList.remove('show');
+                        }, 5000);
+                    }
+
+                    function startPopLoop() {
+                        const delay = Math.floor(Math.random() * (25000 - 15000 + 1) + 15000);
+                        setTimeout(() => {
+                            showPurchasePop();
+                            startPopLoop();
+                        }, delay);
+                    }
+
+                    window.onload = () => {
+                        setTimeout(showPurchasePop, 3000);
+                        startPopLoop();
+                    };
+                </script>
+
+            </body>
+
+            </html>
         </div>
-    </footer>
-
-    <!-- Floating UI -->
-    <div id="jamToko" class="store-status"></div>
-    <div class="cart-float" onclick="document.querySelector('#products').scrollIntoView({behavior: 'smooth'})">
-        <i class="bi bi-bag-fill"></i>
-        <span class="cart-badge" id="cartCount">0</span>
     </div>
-
-    <script>
-        // Data Produk
-        const products = [
-            ['Flores Bajawa', 29000], ['Bali Kintamani', 29000], ['Aceh Gayo', 29000],
-            ['Java Puntang', 29000], ['Malabar', 27000], ['Mandheling', 27000],
-            ['Toraja', 27000], ['Papua Wamena', 29000], ['Kerinci', 28000],
-            ['Java Ciwidey', 27000], ['Sidikalang Arabica', 28000],
-            ['Aceh Gayo Wine', 41000], ['Bali Wine', 40000], ['Kerinci Arabica Natural', 35000],
-            ['Aceh Gayo Natural', 36000], ['Papandayan', 31000], ['Semendo', 31000],
-            ['Garut Nanas', 32000], ['Gn Halu Banana', 32000], ['Dampit Robusta', 22000],
-            ['Sidikalang Robusta', 21000], ['Robusta Lampung', 23000],
-            ['Robusta Gayo', 23000], ['Robusta Bali', 23000],
-            ['Robusta Garut', 21000], ['Flores Bajawa Natural', 32000],
-            ['Robusta Pagar Alam', 22000]
-        ];
-
-        // Render Produk
-        const productList = document.getElementById('productList');
-        products.forEach(p => {
-            productList.innerHTML += `
-            <div class="col-lg-3 col-md-4 col-6">
-                <div class="product-card d-flex flex-column h-100">
-                    <h5 class="fw-bold mb-auto">${p[0]}</h5>
-                    <div class="mt-3">
-                        <div class="price-tag mb-2">Rp ${p[1].toLocaleString()}</div>
-                        <button class="btn btn-gold btn-sm w-100" onclick="addToCart('${p[0]}', ${p[1]})">
-                            <i class="bi bi-plus-lg"></i> Tambah
-                        </button>
-                    </div>
-                </div>
-            </div>`;
-        });
-
-        // Gallery Scroll
-        function scrollGallery(direction) {
-            const container = document.getElementById("galleryScroll");
-            const scrollAmount = 300;
-            container.scrollBy({ left: scrollAmount * direction, behavior: 'smooth' });
-        }
-
-        // Jam Toko Alert
-        const JAM_BUKA = 8, JAM_TUTUP = 21;
-        function renderJamToko() {
-            const el = document.getElementById('jamToko');
-            const h = new Date().getHours();
-            if (h >= JAM_BUKA && h < JAM_TUTUP) {
-                el.className = "store-status status-open";
-                el.innerHTML = "<i class='bi bi-shop'></i> TOKO BUKA";
-            } else {
-                el.className = "store-status status-closed";
-                el.innerHTML = "<i class='bi bi-shop-window'></i> TOKO TUTUP";
-            }
-        }
-        renderJamToko();
-        setInterval(renderJamToko, 60000);
-
-        // Cart Logic
-        let cart = {};
-
-        function addToCart(name, price) {
-            if (cart[name]) {
-                cart[name].qty++;
-            } else {
-                cart[name] = { price: price, qty: 1 };
-            }
-            renderCart();
-            // Optional: Scroll to cart or show toast
-        }
-
-        function renderCart() {
-            const cartList = document.getElementById('cartList');
-            const cartCount = document.getElementById('cartCount');
-            const shippingCost = parseInt(document.getElementById('shipping').value);
-
-            let totalItems = 0;
-            let totalPrice = 0;
-            let html = "<div class='table-responsive'><table class='table table-dark table-sm table-borderless align-middle'>";
-
-            if (Object.keys(cart).length === 0) {
-                cartList.innerHTML = "<div class='py-4 text-muted'><i class='bi bi-cart-x fs-1 d-block mb-2'></i>Keranjang kosong</div>";
-                cartCount.innerText = "0";
-                return;
-            }
-
-            html += "<thead class='text-secondary'><tr><th>Barang</th><th>Jml</th><th>Total</th><th></th></tr></thead><tbody>";
-
-            for (let name in cart) {
-                let item = cart[name];
-                let subtotal = item.qty * item.price;
-                totalItems += item.qty;
-                totalPrice += subtotal;
-
-                html += `<tr>
-                    <td class="text-start">${name}</td>
-                    <td>${item.qty}</td>
-                    <td>Rp ${(subtotal / 1000).toLocaleString()}rb</td>
-                    <td><button class="btn btn-sm btn-link text-danger p-0" onclick="delete cart['${name}']; renderCart()"><i class="bi bi-trash"></i></button></td>
-                </tr>`;
-            }
-
-            let grandTotal = totalPrice + shippingCost;
-
-            html += `<tr class="border-top border-secondary"><td colspan="2" class="text-start pt-3">Subtotal</td><td colspan="2" class="pt-3 text-end">Rp ${totalPrice.toLocaleString()}</td></tr>`;
-            html += `<tr><td colspan="2" class="text-start">Ongkir</td><td colspan="2" class="text-end">Rp ${shippingCost.toLocaleString()}</td></tr>`;
-            html += `<tr class="fw-bold fs-5 text-warning"><td colspan="2" class="text-start pt-2">TOTAL</td><td colspan="2" class="pt-2 text-end">Rp ${grandTotal.toLocaleString()}</td></tr>`;
-            html += "</tbody></table></div>";
-
-            cartList.innerHTML = html;
-            cartCount.innerText = totalItems;
-        }
-
-        // Copy Rekening
-        function copyRek(id) {
-            const text = document.getElementById(id).innerText;
-            navigator.clipboard.writeText(text).then(() => {
-                alert('Nomor rekening berhasil disalin!');
-            });
-        }
-
-        // Checkout WA
-        function checkoutWA() {
-            if (Object.keys(cart).length === 0) return alert("Keranjang kosong!");
-
-            const name = document.getElementById('buyerName').value;
-            const address = document.getElementById('buyerAddress').value;
-            const shippingText = document.getElementById('shipping').options[document.getElementById('shipping').selectedIndex].text;
-
-            if (!name || !address) return alert("Mohon lengkapi Nama dan Alamat!");
-
-            let msg = `☕ *ORDER KOPI AING 555*%0A━━━━━━━━━━━━━━━━━━━━%0A`;
-
-            let total = 0;
-            for (let i in cart) {
-                let sub = cart[i].qty * cart[i].price;
-                total += sub;
-                msg += `• ${i} x${cart[i].qty} = Rp ${sub.toLocaleString()}%0A`;
-            }
-
-            const shippingCost = parseInt(document.getElementById('shipping').value);
-            total += shippingCost;
-
-            msg += `━━━━━━━━━━━━━━━━━━━━%0A`;
-            msg += `📦 Ekspedisi: ${shippingText}%0A`;
-            msg += `💰 *TOTAL BAYAR: Rp ${total.toLocaleString()}*%0A`;
-            msg += `━━━━━━━━━━━━━━━━━━━━%0A`;
-            msg += `👤 Nama: ${name}%0A`;
-            msg += `📍 Alamat: ${address}`;
-
-            window.open("https://wa.me/6281283481295?text=" + msg, "_blank");
-        }
-    </script>
 </body>
 
 </html>

@@ -17,7 +17,7 @@
             <head>
                 <meta charset="UTF-8">
                 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-                <title>Kopi Aing 555</title>
+                <title>KOPI SPECIAL AING 555</title>
                 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
                 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap"
                     rel="stylesheet">
@@ -27,6 +27,7 @@
                         --dark: #0e0e0e;
                         --card: #1a1a1a;
                         --wa-green: #25d366;
+                        --wa-blue: #34b7f1;
                     }
 
                     body {
@@ -207,7 +208,7 @@
                         margin-top: 2px;
                     }
 
-                    /* ===== FLOATING WA (NEW) ===== */
+                    /* ===== FLOATING WA ===== */
                     .floating-wa {
                         position: fixed;
                         bottom: 20px;
@@ -231,7 +232,7 @@
                     }
 
                     .wa-item {
-                        background: #25d366;
+                        background: var(--wa-green);
                         color: white;
                         padding: 10px 20px;
                         border-radius: 30px;
@@ -260,7 +261,7 @@
                     .wa-main-btn {
                         width: 60px;
                         height: 60px;
-                        background: #25d366;
+                        background: var(--wa-green);
                         border-radius: 50%;
                         display: flex;
                         justify-content: center;
@@ -280,11 +281,52 @@
                         width: 35px;
                         height: 35px;
                     }
+
+                    /* Custom Checkout Buttons */
+                    .btn-checkout-1 {
+                        background-color: var(--wa-green);
+                        color: white;
+                        border: none;
+                    }
+
+                    .btn-checkout-2 {
+                        background-color: var(--wa-blue);
+                        color: white;
+                        border: none;
+                    }
+
+                    .btn-checkout-1:hover,
+                    .btn-checkout-2:hover {
+                        opacity: 0.9;
+                        color: white;
+                    }
+
+                    /* Upload Style */
+                    .upload-section {
+                        background: rgba(212, 175, 55, 0.1);
+                        border: 1px solid var(--gold);
+                        border-radius: 12px;
+                        padding: 15px;
+                        margin-bottom: 20px;
+                    }
+
+                    .upload-label {
+                        display: block;
+                        font-weight: 600;
+                        margin-bottom: 10px;
+                        color: var(--gold);
+                    }
+
+                    #preview-struk {
+                        max-width: 150px;
+                        margin-top: 10px;
+                        border-radius: 8px;
+                        display: none;
+                    }
                 </style>
             </head>
 
             <body>
-
                 <!-- NOTIFIKASI PEMBELIAN -->
                 <div id="purchase-notification">
                     <div class="pop-icon">☕</div>
@@ -298,13 +340,9 @@
                 <div class="floating-wa">
                     <div class="wa-menu" id="waMenu">
                         <a href="https://wa.me/6281283481295?text=Halo%20Admin%2C%20saya%20ingin%20Konsultasi%20mengenai%20produk%20kopi."
-                            target="_blank" class="wa-item">
-                            💬 Konsultasi
-                        </a>
+                            target="_blank" class="wa-item">💬 Konsultasi</a>
                         <a href="https://wa.me/6281283481295?text=Halo%20Admin%2C%20saya%20berminat%20untuk%20Daftar%20sebagai%20Reseller%20Kopi%20Aing%20555."
-                            target="_blank" class="wa-item reseller">
-                            🤝 Daftar Reseller
-                        </a>
+                            target="_blank" class="wa-item reseller">🤝 Daftar Reseller</a>
                     </div>
                     <button class="wa-main-btn" onclick="toggleWaMenu()" aria-label="WhatsApp Menu">
                         <svg viewBox="0 0 24 24">
@@ -357,6 +395,7 @@
                         <label class="form-label small">Pilih Kurir:</label>
                         <select id="shipping" class="form-select" onchange="renderCart()">
                             <option value="0">Ambil di tempat – Gratis</option>
+                            <option value="10000">Kurir Lokal (Jabodetabek) – Rp10.000</option>
                             <option value="15000">JNE – Rp15.000</option>
                             <option value="18000">J&T – Rp18.000</option>
                             <option value="20000">SiCepat – Rp20.000</option>
@@ -366,86 +405,81 @@
                     <input id="buyerName" class="form-control mb-2" placeholder="Nama Pembeli">
                     <textarea id="buyerAddress" class="form-control mb-3" placeholder="Alamat Lengkap"></textarea>
 
-                    <button class="btn btn-success w-100 py-3 fw-bold" onclick="checkoutWA()">📲 Checkout
-                        WhatsApp</button>
-                </section>
+                    <!-- FITUR UPLOAD STRUK -->
+                    <div class="upload-section">
+                        <label class="upload-label" for="strukInput">📸 Sudah Transfer? Lampirkan Struk
+                            (Opsional):</label>
+                        <input type="file" id="strukInput" class="form-control bg-dark text-white border-secondary"
+                            accept="image/*" onchange="handleStrukPreview(this)">
+                        <img id="preview-struk" src="#" alt="Pratinjau Struk">
+                    </div>
 
-                <div class="text-center mb-5">
-                    <a href="https://yukngoding.biz.id/28sept/tarif-ongir-lokal-dan-nasional-695f6fab653d7.html"
-                        class="btn btn-outline-warning btn-sm">CEK ONGKIR LOKAL DAN NASIONAL</a>
-                </div>
+                    <div class="row g-2">
+                        <div class="col-md-6">
+                            <button class="btn btn-checkout-1 w-100 py-3 fw-bold"
+                                onclick="checkoutWA('081283481295')">📲 Chekout Ke Admin 1</button>
+                        </div>
+                        <div class="col-md-6">
+                            <button class="btn btn-checkout-2 w-100 py-3 fw-bold"
+                                onclick="checkoutWA('082123448796')">📲 Chekout ke Admin 2</button>
+                        </div>
+                    </div>
+                </section>
 
                 <footer class="text-center py-5">
                     <div class="container">
                         <div class="gold-card p-4">
                             <h3 class="gold-title mb-3">📞 ADMIN & 💳 PEMBAYARAN</h3>
-                            <p class="mb-2">
-                                WhatsApp Admin Aktif:<br>
-                                <a href="https://wa.me/6281283481295" target="_blank" class="text-warning fw-bold">📲
-                                    0812-8348-1295</a>
-                            </p>
-                            <p class="small-note mb-4">*Admin berbeda saat toko tutup</p>
+                            <p class="mb-2">Admin Owner : <a href="https://wa.me/6281283481295" target="_blank"
+                                    class="text-warning fw-bold">081283481295</a></p>
+                            <p class="mb-4">Admin Kantor : <a href="https://wa.me/6282123448796" target="_blank"
+                                    class="text-warning fw-bold">082123448796</a></p>
 
                             <div class="row g-3">
                                 <div class="col-md-4">
                                     <div class="bank-box">
                                         🏦 <b>BCA</b><br>
                                         <span id="rekBCA">7391630481</span><br>
-                                        a.n Fira<br>
+                                        a.n Ananda Safira<br>
                                         <button class="btn btn-sm copy-btn mt-2"
                                             onclick="copyRek('7391630481')">Copy</button>
                                     </div>
                                 </div>
-                                <div class="col-md-4">
-                                    <div class="bank-box">
-                                        🏦 <b>BRI</b><br>
-                                        <span id="rekBRI">0000000</span><br>
-                                        a.n Kopi Aing 555<br>
-                                        <button class="btn btn-sm copy-btn mt-2"
-                                            onclick="copyRek('0000000')">Copy</button>
-                                    </div>
-                                </div>
-                                <div class="col-md-4">
-                                    <div class="bank-box">
-                                        🏦 <b>MANDIRI</b><br>
-                                        <span id="rekMANDIRI">000000000</span><br>
-                                        a.n Kopi Aing 555<br>
-                                        <button class="btn btn-sm copy-btn mt-2"
-                                            onclick="copyRek('000000000')">Copy</button>
-                                    </div>
-                                </div>
                             </div>
                         </div>
-                        <p class="mt-4 opacity-50">© 2025 Kopi Aing 555</p>
+                        <p class="mt-4 opacity-50">© 2025 Kopi Aing 555-syahbani23</p>
                     </div>
                 </footer>
 
                 <script>
-                    // ===== FLOATING WA MENU =====
+                    const REK_BCA = "7391630481";
+                    const AN_BCA = "Ananda Safira";
+                    const JAM_BUKA = 8, JAM_TUTUP = 21;
+
                     function toggleWaMenu() {
                         const menu = document.getElementById('waMenu');
                         menu.classList.toggle('active');
                     }
 
-                    // Tutup menu WA jika klik di luar
                     window.addEventListener('click', function (e) {
                         const waContainer = document.querySelector('.floating-wa');
-                        if (!waContainer.contains(e.target)) {
+                        if (waContainer && !waContainer.contains(e.target)) {
                             document.getElementById('waMenu').classList.remove('active');
                         }
                     });
 
-                    // ===== SLIDER =====
                     function slide(d) {
                         document.getElementById("slider").scrollBy({ left: 300 * d, behavior: 'smooth' });
                     }
 
-                    // ===== JAM TOKO =====
-                    const JAM_BUKA = 8, JAM_TUTUP = 21;
+                    function isTokoBuka() {
+                        const h = new Date().getHours();
+                        return h >= JAM_BUKA && h < JAM_TUTUP;
+                    }
+
                     function renderJamToko() {
                         const el = document.getElementById("jamToko");
-                        const h = new Date().getHours();
-                        if (h >= JAM_BUKA && h < JAM_TUTUP) {
+                        if (isTokoBuka()) {
                             el.className = "alert alert-success";
                             el.innerHTML = "🟢 <b>TOKO BUKA</b> | 08.00 – 21.00";
                         } else {
@@ -454,9 +488,19 @@
                         }
                     }
                     renderJamToko();
-                    setInterval(renderJamToko, 60000);
 
-                    // ===== PRODUK =====
+                    function handleStrukPreview(input) {
+                        const preview = document.getElementById('preview-struk');
+                        if (input.files && input.files[0]) {
+                            const reader = new FileReader();
+                            reader.onload = function (e) {
+                                preview.src = e.target.result;
+                                preview.style.display = 'block';
+                            }
+                            reader.readAsDataURL(input.files[0]);
+                        }
+                    }
+
                     const products = [
                         ['Flores Bajawa', 29000], ['Bali Kintamani', 29000], ['Aceh Gayo', 29000],
                         ['Java Puntang', 29000], ['Malabar', 27000], ['Mandheling', 27000],
@@ -472,16 +516,15 @@
                     const productList = document.getElementById('productList');
                     products.forEach(p => {
                         productList.innerHTML += `
-    <div class="col-md-4 col-6">
-        <div class="product-card">
-            <h6 class="small fw-bold">${p[0]}</h6>
-            <p class="text-warning mb-2">Rp ${p[1].toLocaleString()}</p>
-            <button class="btn btn-sm btn-gold w-100" onclick="addToCart('${p[0]}',${p[1]})">Tambah</button>
-        </div>
-    </div>`;
+            <div class="col-md-4 col-6">
+                <div class="product-card">
+                    <h6 class="small fw-bold">${p[0]}</h6>
+                    <p class="text-warning mb-2">Rp ${p[1].toLocaleString()}</p>
+                    <button class="btn btn-sm btn-gold w-100" onclick="addToCart('${p[0]}',${p[1]})">Tambah</button>
+                </div>
+            </div>`;
                     });
 
-                    // ===== CART =====
                     let cart = {};
                     function addToCart(n, p) {
                         cart[n] ? cart[n].qty++ : cart[n] = { price: p, qty: 1 };
@@ -489,38 +532,80 @@
                     }
 
                     function renderCart() {
-                        const cartList = document.getElementById('cartList');
+                        const cartListItems = document.getElementById('cartList');
                         if (!Object.keys(cart).length) {
-                            cartList.innerHTML = "<small class='text-muted'>Keranjang masih kosong</small>";
+                            cartListItems.innerHTML = "<small class='text-muted'>Keranjang masih kosong</small>";
                             return;
                         }
-                        let total = 0, html = "<div class='table-responsive'><table class='table table-dark table-sm table-borderless'>";
+                        let subtotal = 0, html = "<div class='table-responsive'><table class='table table-dark table-sm table-borderless'>";
                         html += "<thead><tr><th>Produk</th><th>Qty</th><th>Sub</th><th></th></tr></thead><tbody>";
                         for (let i in cart) {
                             let s = cart[i].qty * cart[i].price;
-                            total += s;
+                            subtotal += s;
                             html += `<tr>
-            <td class="small">${i}</td>
-            <td>${cart[i].qty}</td>
-            <td class="small">Rp ${s.toLocaleString()}</td>
-            <td><button class="btn btn-sm text-danger p-0" onclick="delete cart['${i}'];renderCart()">✕</button></td>
-        </tr>`;
+                <td class="small">${i}</td>
+                <td>${cart[i].qty}</td>
+                <td class="small">Rp ${s.toLocaleString()}</td>
+                <td><button class="btn btn-sm text-danger p-0" onclick="delete cart['${i}'];renderCart()">✕</button></td>
+            </tr>`;
                         }
                         let ongkir = parseInt(document.getElementById('shipping').value);
-                        total += ongkir;
-                        html += `</tbody><tfoot><tr class="border-top"><th colspan="2">TOTAL</th><th colspan="2" class="text-warning">Rp ${total.toLocaleString()}</th></tr></tfoot></table></div>`;
-                        cartList.innerHTML = html;
+                        let total = subtotal + ongkir;
+                        html += `</tbody><tfoot>
+            <tr><td colspan="2" class="small">Subtotal</td><td colspan="2" class="small">Rp ${subtotal.toLocaleString()}</td></tr>
+            <tr><td colspan="2" class="small">Ongkir</td><td colspan="2" class="small">Rp ${ongkir.toLocaleString()}</td></tr>
+            <tr class="border-top"><th colspan="2">TOTAL</th><th colspan="2" class="text-warning">Rp ${total.toLocaleString()}</th></tr>
+            </tfoot></table></div>`;
+                        cartListItems.innerHTML = html;
                     }
 
-                    // ===== CHECKOUT WA =====
-                    function checkoutWA() {
+                    function checkoutWA(noAdmin) {
                         if (!Object.keys(cart).length) return alert("Keranjang kosong");
-                        let msg = "☕ *KOPI AING 555*%0A━━━━━━━━━━━━━━%0A";
+                        const nama = document.getElementById('buyerName').value || "-";
+                        const alamat = document.getElementById('buyerAddress').value || "-";
+                        const kurirText = document.getElementById('shipping').options[document.getElementById('shipping').selectedIndex].text;
+                        const ongkirVal = parseInt(document.getElementById('shipping').value);
+                        const strukFile = document.getElementById('strukInput').files[0];
+
+                        let statusToko = isTokoBuka() ? "🟢 TOKO SEDANG BUKA" : "🔴 TOKO SEDANG TUTUP (Diproses Besok)";
+
+                        let msg = `☕ *FORM PESANAN KOPI AING 555*%0A`;
+                        msg += `━━━━━━━━━━━━━━%0A`;
+                        msg += `Status: ${statusToko}%0A`;
+                        msg += `━━━━━━━━━━━━━━%0A`;
+
+                        let subtotal = 0;
                         for (let i in cart) {
-                            msg += `• ${i} (${cart[i].qty})%0A`;
+                            let sub = cart[i].qty * cart[i].price;
+                            subtotal += sub;
+                            msg += `• *${i}* (x${cart[i].qty}) = Rp ${sub.toLocaleString()}%0A`;
                         }
-                        msg += `━━━━━━━━━━━━━━%0A👤 ${document.getElementById('buyerName').value || "-"}%0A📍 ${document.getElementById('buyerAddress').value || "-"}`;
-                        window.open("https://wa.me/6281283481295?text=" + msg, "_blank");
+
+                        let totalSemua = subtotal + ongkirVal;
+
+                        msg += `━━━━━━━━━━━━━━%0A`;
+                        msg += `👤 *Nama:* ${nama}%0A`;
+                        msg += `📍 *Alamat:* ${alamat}%0A`;
+                        msg += `🚚 *Kurir:* ${kurirText}%0A`;
+                        msg += `━━━━━━━━━━━━━━%0A`;
+                        msg += `💰 *Subtotal:* Rp ${subtotal.toLocaleString()}%0A`;
+                        msg += `📦 *Ongkir:* Rp ${ongkirVal.toLocaleString()}%0A`;
+                        msg += `⭐ *TOTAL BAYAR:* Rp ${totalSemua.toLocaleString()}%0A`;
+                        msg += `━━━━━━━━━━━━━━%0A`;
+                        msg += `💳 *PEMBAYARAN KE:*%0A`;
+                        msg += `BANK BCA: *${REK_BCA}*%0A`;
+                        msg += `A/N: *${AN_BCA}*%0A`;
+                        msg += `━━━━━━━━━━━━━━%0A`;
+
+                        if (strukFile) {
+                            msg += `📸 *STRUK:* (Sudah saya lampirkan difoto setelah pesan ini)%0A`;
+                            msg += `━━━━━━━━━━━━━━%0A`;
+                        } else {
+                            msg += `_Silakan kirim bukti transfer ke sini._%0A`;
+                        }
+
+                        let fixedNo = noAdmin.startsWith('0') ? '62' + noAdmin.slice(1) : noAdmin;
+                        window.open(`https://wa.me/${fixedNo}?text=` + msg, "_blank");
                     }
 
                     function copyRek(id) {
@@ -533,45 +618,26 @@
                         alert("Nomor Rekening Berhasil Disalin!");
                     }
 
-                    // ===== POPUP NOTIFICATION LOGIC =====
-                    const fakeNames = ["Budi", "Siti", "Andi", "Rina", "Agus", "Dewi", "Eko", "Maya", "Faisal", "Lestari", "Hendra", "Yanti"];
-                    const fakeCities = ["Jakarta", "Bandung", "Surabaya", "Medan", "Makassar", "Palembang", "Semarang", "Yogyakarta", "Denpasar", "Malang"];
-                    const fakeTimes = ["1 menit yang lalu", "3 menit yang lalu", "5 menit yang lalu", "10 menit yang lalu", "Baru saja"];
-
                     function showPurchasePop() {
                         const pop = document.getElementById('purchase-notification');
                         const content = document.getElementById('pop-content');
-                        const time = document.getElementById('pop-time');
+                        if (!pop || !content) return;
+
+                        const fakeNames = ["Budi", "Siti", "Andi", "Rina", "Agus", "Dewi"];
+                        const fakeCities = ["Jakarta", "Bandung", "Depok", "Bekasi", "Tangerang"];
 
                         const name = fakeNames[Math.floor(Math.random() * fakeNames.length)];
                         const city = fakeCities[Math.floor(Math.random() * fakeCities.length)];
                         const product = products[Math.floor(Math.random() * products.length)][0];
-                        const when = fakeTimes[Math.floor(Math.random() * fakeTimes.length)];
 
                         content.innerHTML = `<span class="pop-name">${name}</span> dari <span class="fw-bold">${city}</span><br>Baru saja membeli <b>${product}</b>`;
-                        time.innerText = when;
-
                         pop.classList.add('show');
-
-                        setTimeout(() => {
-                            pop.classList.remove('show');
-                        }, 5000);
+                        setTimeout(() => { pop.classList.remove('show'); }, 5000);
                     }
 
-                    function startPopLoop() {
-                        const delay = Math.floor(Math.random() * (25000 - 15000 + 1) + 15000);
-                        setTimeout(() => {
-                            showPurchasePop();
-                            startPopLoop();
-                        }, delay);
-                    }
-
-                    window.onload = () => {
-                        setTimeout(showPurchasePop, 3000);
-                        startPopLoop();
-                    };
+                    setInterval(showPurchasePop, 20000);
+                    window.onload = () => { setTimeout(showPurchasePop, 3000); };
                 </script>
-
             </body>
 
             </html>
